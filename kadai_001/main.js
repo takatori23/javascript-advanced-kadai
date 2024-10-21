@@ -70,6 +70,14 @@ const keyPress = e => {
   if(untyped === '') {
     createText();
   }
+
+  // タイプ数のカウントアップ
+let countUp = 0;
+
+document.addEventListener('keydown', function() {
+    countUp++; // countUp 変数をインクリメント
+    document.getElementById('countUp').textContent = countUp; // インクリメントされた値を表示
+});
 };
 
 // タイピングスキルのランクを判定
@@ -137,10 +145,3 @@ start.addEventListener('click', () => {
 
 untypedfield.textContent = 'スタートボタンで開始';
 
-// タイプ数のカウントアップ
-let countUp = 0;
-
-document.addEventListener('keydown', function() {
-    countUp++; // countUp 変数をインクリメント
-    document.getElementById('countUp').textContent = countUp; // インクリメントされた値を表示
-});
