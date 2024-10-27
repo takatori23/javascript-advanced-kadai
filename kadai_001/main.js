@@ -44,9 +44,8 @@ const createText = () => {
 
 // キー入力の判定
 const keyPress = e => {
-
   // 誤タイプの場合
-  if(e.key !== untyped.substring(0, 1)) {
+  if (e.key !== untyped.substring(0, 1)) { // インデックスを修正
     wrap.classList.add('mistyped');
     // 100ms後に背景色を元に戻す
     setTimeout(() => {
@@ -54,7 +53,7 @@ const keyPress = e => {
     }, 100);
     return;
   }
-  
+
   // 正タイプの場合
   // スコアのインクリメント
   score++;
@@ -67,18 +66,32 @@ const keyPress = e => {
   typecount.textContent = score;
 
   // テキストがなくなったら新しいテキストを表示
-  if(untyped === '') {
+  if (untyped === '') {
     createText();
   }
+};
 
-  // タイプ数のカウントアップ
+// ゲームスタート時
+start.addEventListener('click', () => {
+  timer();
+
+  createText();
+
+  start.style.display = 'none';
+
+  document.addEventListener('keydown', keyPress); // keydown イベントに変更
+});
+
+untypedfield.textContent = 'スタートボタンで開始';
+
+// タイプ数のカウントアップ
 let countUp = 0;
 
-document.addEventListener('keydown', function() {
-    countUp++; // countUp 変数をインクリメント
-    document.getElementById('countUp').textContent = countUp; // インクリメントされた値を表示
+document.addEventListener('keypress', function () { // keydown イベントにもカウント追加可
+  countUp++;
+  document.getElementById('countUp').textContent = countUp;
 });
-};
+
 
 // タイピングスキルのランクを判定
 const rankCheck = score => {
@@ -100,6 +113,7 @@ const rankCheck = score => {
 
   // 生成したメッセージと一緒に文字列を返す
   return `${score}文字打てました!\n${text}\n【OK】リトライ / 【キャンセル】終了`;
+
 };
 
 // ゲームを終了
@@ -144,4 +158,3 @@ start.addEventListener('click', () => {
 });
 
 untypedfield.textContent = 'スタートボタンで開始';
-
