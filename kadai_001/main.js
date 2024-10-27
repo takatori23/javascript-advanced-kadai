@@ -79,7 +79,7 @@ start.addEventListener('click', () => {
 
   start.style.display = 'none';
 
-  document.addEventListener('keydown', keyPress); // keydown イベントに変更
+  document.addEventListener('keypress', keyPress); // keydown イベントに変更
 });
 
 untypedfield.textContent = 'スタートボタンで開始';
